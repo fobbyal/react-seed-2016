@@ -1,0 +1,17 @@
+{
+  "name": "react-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node_modules/.bin/webpack --env.dev"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "eslint": "^3.7.0",
+    "webpack": "^2.1.0-beta.25"
+  }
+}
