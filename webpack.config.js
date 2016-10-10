@@ -23,6 +23,7 @@ const plugins = env => {
       }
     }),
     new ProgressBarPlugin(),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body'
@@ -53,7 +54,11 @@ module.exports = env => ({
   module: {
     loaders: [
     { test: /\.js$/, loader:  'babel', exclude: /node_modules/ },
-    { test: /\.css$/, loader:  'style-loader!css-loader?modules&importLoaders=1!postcss-loader' },
+    { test: /\.css$/, 
+      loader: ['style-loader','css-loader?modules',
+    //{ test: /\.css$/, loader:  'style-loader!css-loader?modules&importLoaders=1!postcss-loader' },
+      //'postcss-loader'
+      ] },
     ]
   },
   plugins: plugins(env)

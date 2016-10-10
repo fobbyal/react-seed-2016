@@ -17,8 +17,11 @@ const renderApp= (Content,element) => {
 renderApp(require('./test.js').default,rootEl)
 
 
+console.debug('module is '+module.hot);
 if(module.hot) {
+  console.debug('module is hot');
   module.hot.accept('./test.js',() => {
+    console.debug('accepting....');
     renderApp(require('./test.js').default,rootEl)
   });
 };
