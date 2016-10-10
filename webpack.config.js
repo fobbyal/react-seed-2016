@@ -3,6 +3,7 @@ const autoprefixer = require('autoprefixer')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const entry = env => {
   if(env.prod) 
@@ -17,17 +18,18 @@ const entry = env => {
 
 const plugins = env => {
   const prodPlugs = [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: () => [autoprefixer]
-      }
-    }),
+    // new webpack.LoaderOptionsPlugin({
+    //   options: {
+    //     postcss: [autoprefixer]
+    //   }
+    // }),
     new ProgressBarPlugin(),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
       inject: 'body'
-    })
+    }),
+    new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
   ]
 
   if(env.prod) 
@@ -53,12 +55,24 @@ module.exports = env => ({
   bail: env.prod,
   module: {
     loaders: [
-    { test: /\.js$/, loader:  'babel', exclude: /node_modules/ },
-    { test: /\.css$/, 
-      loader: ['style-loader','css-loader?modules',
-    //{ test: /\.css$/, loader:  'style-loader!css-loader?modules&importLoaders=1!postcss-loader' },
-      //'postcss-loader'
-      ] },
+      { test: /\.js$/, loader:  'babel', exclude: /node_modules/ },
+      { test: /\.css$/, 
+         loader:[ 
+              'style-loader',
+              { loader: 'css-loader', query: { modules: true, sourceMaps: true } },
+              'postcss-loader'
+              ]
+      },
+      /*
+      { test: /\.css$/, 
+         loader: ExtractTextPlugin.extract({
+              fallbackLoader: 'style-loader',
+              loader: [
+                  { loader: 'css-loader', query: { modules: true, sourceMaps: true } },
+                  //'postcss-loader'
+              ]
+          })
+      },*/
     ]
   },
   plugins: plugins(env)

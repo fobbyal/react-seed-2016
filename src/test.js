@@ -7,7 +7,7 @@ const Test = () => {
       <div>
         <Test2/>
         <div className={styles.test}>
-          Finally hello world!
+          Finally hello wor!
         </div>
       </div>
   )

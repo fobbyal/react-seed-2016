@@ -7,6 +7,7 @@ import { AppContainer } from 'react-hot-loader'
 const rootEl = document.getElementById('root')
 
 const renderApp= (Content,element) => {
+  console.log('rendering...')
   ReactDOM.render(
       <AppContainer>
         <Content/>
@@ -19,9 +20,7 @@ renderApp(require('./test.js').default,rootEl)
 
 console.debug('module is '+module.hot);
 if(module.hot) {
-  console.debug('module is hot');
   module.hot.accept('./test.js',() => {
-    console.debug('accepting....');
     renderApp(require('./test.js').default,rootEl)
   });
 };
