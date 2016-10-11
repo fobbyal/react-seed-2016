@@ -7,7 +7,11 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const entry = env => {
   if(env.prod) 
-    return './app.js'
+    return {
+      app: './app.js',
+      vendor: ['react','react-dom'],
+    }
+
   return [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000',
@@ -18,6 +22,12 @@ const entry = env => {
 
 const plugins = env => {
   const prodPlugs = [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    })
+  ]
+
+  const commonPlugs = [
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [autoprefixer]
@@ -35,36 +45,44 @@ const plugins = env => {
   ]
 
   if(env.prod) 
-    return prodPlugs
+    return [...prodPlugs,...commonPlugs]
+      
 
   return [
-    ...prodPlugs,
+    ...commonPlugs,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]
 
 }
 
-module.exports = env => ({
-  entry: entry(env),
-  output: {
-    filename: 'bundle.js',
+const output = env => {
+  const filename = env.prod?'bundle.[name].[chunkhash].js':'bundle.js'
+
+  return {
+    filename,
     path: resolve(__dirname, 'dist'),
     pathinfo: !env.prod,
-  },
+  }
+}
+
+module.exports = env => ({
+  entry: entry(env),
+  output: output(env),
   context: resolve(__dirname,'src'),
   devtool: env.prod ? 'source-map' : 'eval', 
   bail: env.prod,
   module: {
     loaders: [
       { test: /\.js$/, loader:  'babel', exclude: /node_modules/ },
-      { test: /\.css$/, 
+      { test: /\.css$/, loader: 'style-loader!css-loader?modules&importLoaders=1!postcss-loader' },
+      /*
          loader:[ 
               'style-loader',
               { loader: 'css-loader', query: { modules: true, sourceMaps: true } },
               'postcss-loader'
               ]
-      },
+      */
       /*
        * todo might wnat to use the following plugin for prorduction but not for the moment
       { test: /\.css$/, 

@@ -4,8 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "node_modules/.bin/webpack --env.dev",
-    "start": "node dev-server.js"
+    "validate": "npm-run-all --parallel lint validate-webpack:*",
+    "prebuild:prod": "npm run clean-dist",
+    "build:prod": "node_modules/.bin/webpack --env.prod -p",
+    "prebuild": "npm run clean-dist",
+    "build": "node_modules/.bin/webpack --env.dev",
+    "start": "node dev-server.js",
+    "clean-dist": "rimraf dist",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "validate-webpack": "webpack-validator webpack.config.js --env.dev",
+    "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod"
   },
   "author": "",
   "license": "ISC",
@@ -19,12 +28,15 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.22.0",
+    "npm-run-all": "^3.1.0",
     "postcss-loader": "^0.13.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "react-hot-loader": "^3.0.0-beta.5",
+    "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.8"
+    "webpack-dev-server": "^2.1.0-beta.8",
+    "webpack-validator": "^2.2.9"
   },
   "dependencies": {
     "react": "^15.3.2",
