@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-//import Test from './test.js'
 
 const rootEl = document.getElementById('root')
 
@@ -9,15 +8,16 @@ const renderApp= (Content,element) => {
   ReactDOM.render(
       <AppContainer>
         <Content/>
-      </AppContainer>
-      ,element)
+      </AppContainer> ,
+      element)
 }
 
-renderApp(require('./test.js').default,rootEl)
+const loadApp = () =>  renderApp(require('./Dashboard.js').default,rootEl)
 
+loadApp()
 
 if(module.hot) {
-  module.hot.accept('./test.js',() => {
-    renderApp(require('./test.js').default,rootEl)
+  module.hot.accept('./Dashboard.js',() => {
+    loadApp()
   })
 }
