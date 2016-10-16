@@ -12,12 +12,12 @@ const renderApp= (Content,element) => {
       element)
 }
 
-const loadApp = () =>  renderApp(require('./Dashboard.js').default,rootEl)
+const loadApp = () =>  renderApp(require('./container/Dashboard.js').default,rootEl)
 
 loadApp()
 
 if(module.hot) {
-  module.hot.accept('./Dashboard.js',() => {
+  module.hot.accept('./container/Dashboard.js',() => {
     loadApp()
   })
 }

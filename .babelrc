@@ -1,4 +1,22 @@
 {
-  "presets": [["es2015",{"modules":false }], "stage-0", "react"],
-  "plugins": ["react-hot-loader/babel","transform-object-rest-spread","transform-async-to-generator"]
+  "presets": [
+    ["es2015",{"modules":false }],
+    "stage-0",
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-object-rest-spread",
+    "transform-async-to-generator",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+				"container": "./container",
+				"component": "./reducer",
+				"action": "./action",
+				"reducer": "./reducer",
+				"selector": "./selector"
+      }
+    }]
+  ]
 }

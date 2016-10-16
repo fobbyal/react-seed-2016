@@ -6,7 +6,8 @@
   },
   "parser": "babel-eslint",
   "plugins": [
-    "react"
+    "react",
+    "import"
   ],
   "ecmaFeatures": {
     "jsx": true,
@@ -29,6 +30,11 @@
     'templateStrings': true,
   },
   "rules": {
+    "import/no-unresolved": [2, {commonjs: true, amd: true}],
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
     "quotes": [2, "single"],
     "strict": [2, "never"],
     "react/jsx-uses-react": 2,
@@ -86,5 +92,10 @@
     'no-undef': 2,
     "object-curly-spacing": [2, "always"],
     "array-bracket-spacing": [2, "never" ]
+  },
+  "settings": {
+    "import/resolver": {
+			"babel-module": {}
+    }
   }
 }
