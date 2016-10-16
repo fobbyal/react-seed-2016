@@ -12,9 +12,12 @@ const entry = env => {
       vendor: ['react','react-dom'],
     }
 
+  const devServerURL = env.host||'localhost'
+  console.log('hot reload host is '+devServerURL)
+
   return [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    `webpack-dev-server/client?http://${devServerURL}:3000`,
     'webpack/hot/only-dev-server',
     './app.js',
   ]

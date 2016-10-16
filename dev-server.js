@@ -1,10 +1,11 @@
 /*eslint no-console: "allow" */
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server')
-const config = require('./webpack.config.js')({prod:false});
 
 const host = process.argv.length>2 ? process.argv[2]:'localhost'
 const port = process.argv.length>3 ? process.argv[3]:'3000'
+
+const config = require('./webpack.config.js')({prod:false,host});
 
 
 new WebpackDevServer(webpack(config), {

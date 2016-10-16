@@ -10,6 +10,7 @@
     "prebuild": "npm run clean-dist",
     "build": "node_modules/.bin/webpack --env.dev",
     "start": "node dev-server.js",
+    "train": "node dev-server.js train.integdev.com",
     "clean-dist": "rimraf dist",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
