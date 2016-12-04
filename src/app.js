@@ -4,6 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 
 /* eslint-disable import/no-unresolved */
 require('!!style-loader!css-loader!normalize.css/normalize.css')
+//require('!!style-loader!css-loader!semantic-ui-css/semantic.min.css')
 /* eslint-enable import/no-unresolved */
 
 const rootEl = document.getElementById('root')
