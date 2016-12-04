@@ -10,12 +10,10 @@ const Dashboard = () => (
   <BrowserRouter>
     <div>
       <Nav/>
-      <Match exactly pattern="/" component={Home}/>
+      <Match exactly pattern="/home" component={Home}/>
       <Match exactly pattern="/about" component={About}/>
     </div>
   </BrowserRouter>
-
-
 )
 
 export default Dashboard
