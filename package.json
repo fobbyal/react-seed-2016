@@ -15,30 +15,38 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "validate-webpack": "webpack-validator webpack.config.js --env.dev",
-    "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod"
+    "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
+    "test": " jest"
   },
-  "author": "",
+  "author": "Alex Liang",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
+    "babel-jest": "^17.0.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-module-resolver": "^2.2.0",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.25.0",
+    "enzyme": "^2.6.0",
     "eslint": "^3.8.0",
     "eslint-import-resolver-babel-module": "^2.0.1",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-react": "^6.4.1",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "html-webpack-plugin": "^2.22.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-cli": "^17.0.3",
     "npm-run-all": "^3.1.0",
     "postcss-loader": "^0.13.0",
     "progress-bar-webpack-plugin": "^1.9.0",
+    "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "^3.0.0-beta.5",
+    "react-test-renderer": "^15.4.1",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta.25",
@@ -49,5 +57,10 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "next"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }

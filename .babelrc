@@ -11,11 +11,16 @@
       "root": ["./src"],
       "alias": {
 				"container": "./container",
-				"component": "./reducer",
+				"component": "./component",
 				"action": "./action",
 				"reducer": "./reducer",
 				"selector": "./selector"
       }
     }]
-  ]
+  ],
+	"env": {
+		"test": {
+			"plugins": ["transform-es2015-modules-commonjs"]
+		}
+  }
 }

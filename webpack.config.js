@@ -77,7 +77,7 @@ module.exports = env => ({
   bail: env.prod,
   module: {
     loaders: [
-      { test: /\.js$/, loader:  'react-hot-loader/webpack!babel', exclude: /node_modules/ },
+      { test: /\.js$/, loader:  'react-hot-loader/webpack!babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: 'style-loader!css-loader?modules&importLoaders=1!postcss-loader' },
       /*
          loader:[ 
